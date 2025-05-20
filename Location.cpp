@@ -22,6 +22,20 @@ std::string Location::getName() const {
     return name;
 }
 
+//getDescription
+//Returns a string containing the name of the location, a list of the directions you
+//leave in and if it has been visited before. The first time we get the description for
+//a room, it might say:
+//"a deep dark cave. Exits: north east south."
+//Or for a different room:
+//"a musty passage. You have been here before. Exits: north east south."
+std::string Location::getDescription() const {
+    std::string desc = "Location: " + name;
+    if (exit) desc += " [EXIT]";
+    if (visited) desc += " (visited)";
+    return desc;
+}
+
 //isExit
 //Return true if this Location is an exit
 bool Location::isExit() const {
