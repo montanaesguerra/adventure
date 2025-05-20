@@ -10,7 +10,7 @@ enum Direction {
 class Location {
     public:
         Location();
-        Location(const std::strings& locName, bool isTheExit);
+        Location(const std::string& locName, bool isTheExit);
 
         std::string getName() const;
         std::string getDescription() const;

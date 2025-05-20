@@ -6,3 +6,9 @@ Location::Location() : name("?"), visited(false), exit(false) {
     for (int i = 0; i < 4; ++i)
         neighbors[i] = nullptr;
 }
+
+//getName
+//Returns the name of the location
+std::string Location::getName() const {
+    return name;
+}
