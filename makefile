@@ -4,6 +4,14 @@ SRC := main.cpp
 OBJ := main.o
 TARGET := main
 
+# list your .h files here
+HEADERS = Location.h
+
+# list .cpp files here according to main program, tests, or both
+PROGRAM_FILES = main.cpp
+TEST_FILES = tests.cpp
+SHARED_FILES = Location.cpp
+
 # ==== Default Target ====
 all: $(TARGET)
 
