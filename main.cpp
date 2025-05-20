@@ -65,7 +65,7 @@ int main()
 
     Location* currentLocation = &locations[0]; // Start at dark cave
 
-    cout << "Welcome to the cave adventure!" << endl;
+    cout << "You have 5 minutes to get out or your PP is gone." << endl;
 
     while (!currentLocation->isExit()) {
         cout << "\nYou are at " << currentLocation->getDescription() << endl;
@@ -84,7 +84,7 @@ int main()
     }
 
     cout << "You emerge safely!" << endl;
-    
+
     return 0;
 
 }
