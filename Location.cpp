@@ -36,6 +36,13 @@ std::string Location::getDescription() const {
     return desc;
 }
 
+//hasNeighbor
+//Returns true if there is another location in the specified direction, false if there is
+//not (nullptr)
+bool Location::hasNeighbor(Direction dir) const {
+    return neighbors[dir] != nullptr;
+}
+
 //isExit
 //Return true if this Location is an exit
 bool Location::isExit() const {
