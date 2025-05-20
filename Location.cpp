@@ -80,3 +80,15 @@ void Location::setNeighbor(Direction dir, Location* neighborLoc) {
 bool Location::isExit() const {
     return exit;
 }
+
+//visit()
+//Marks a room as having been visited
+void Location::visit() {
+    visited = true;
+}
+
+//isVisited()
+//Returns true if a room has been visited.
+bool Location::isVisited() const {
+    return visited;
+}
