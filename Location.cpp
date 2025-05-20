@@ -30,17 +30,49 @@ std::string Location::getName() const {
 //Or for a different room:
 //"a musty passage. You have been here before. Exits: north east south."
 std::string Location::getDescription() const {
-    std::string desc = "Location: " + name;
-    if (exit) desc += " [EXIT]";
-    if (visited) desc += " (visited)";
-    return desc;
+    std::ostringstream desc;
+    desc << name << ". Exits:";
+
+    bool foundExit = false;
+    const char* directionNames[] = { "north", "east", "south", "west" };
+
+    for (int i = 0; i < 4; ++i) {
+        if (neighbors[i] != nullptr && neighbors[i]->isExit()) {
+            if (foundExit) {
+                desc << ",";
+            }
+            desc << " " << directionNames[i];
+            foundExit = true;
+        }
+    }
+
+    if (!foundExit) {
+        desc << " none.";
+    } else {
+        desc << ".";
+    }
+
+    return desc.str();
 }
+
 
 //hasNeighbor
 //Returns true if there is another location in the specified direction, false if there is
 //not (nullptr)
 bool Location::hasNeighbor(Direction dir) const {
     return neighbors[dir] != nullptr;
+}
+
+//getNeighbor
+//Returns a pointer to the neighbor in the indicated direction (or nullptr if there's no neighbor)
+Location* Location::getNeighbor(Direction dir) const {
+    return neighbors[dir];
+}
+
+//setNeighbor
+//Stores the indicated Location pointer as the designated neighbor
+void Location::setNeighbor(Direction dir, Location* neighborLoc) {
+    neighbors[dir] = neighborLoc;
 }
 
 //isExit

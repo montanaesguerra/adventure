@@ -2,6 +2,8 @@
 #define LOCATION_H
 
 #include <string>
+#include <sstream>
+
 
 enum Direction {
     NORTH, EAST, SOUTH, WEST
