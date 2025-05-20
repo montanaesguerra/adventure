@@ -9,7 +9,11 @@ enum Direction {
 
 class Location {
     public:
+
+        //Default Constructor
         Location();
+
+        //Constructor
         Location(const std::string& locName, bool isTheExit);
 
         std::string getName() const;
