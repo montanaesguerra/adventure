@@ -1,29 +1,27 @@
-CC := g++
-CFLAGS := -g -std=c++17
-SRC := main.cpp
-OBJ := main.o
-TARGET := main
+# compiler options
+CXXFLAGS = -g -Wall -Wextra
+CXXFLAGS += -std=c++17 -pedantic -pedantic-errors
+CXXFLAGS += -Wfloat-equal -Wredundant-decls -Wshadow -Wconversion
 
 # list your .h files here
-HEADERS = Location.h
+HEADERS =
 
 # list .cpp files here according to main program, tests, or both
 PROGRAM_FILES = main.cpp
 TEST_FILES = tests.cpp
-SHARED_FILES = Location.cpp
+SHARED_FILES = 
 
-# ==== Default Target ====
-all: $(TARGET)
+.PHONY: all
+all: program.exe tests.exe
 
-# ==== Build Target ====
-$(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) $^ -o $@
+.PHONY: program.exe # Always force rebuild of tests
+program.exe: $(PROGRAM_FILES) $(SHARED_FILES) $(HEADERS)
+	$(CXX) $(CXXFLAGS) $(PROGRAM_FILES) $(SHARED_FILES) -o $@
 
-# ==== Object File Rule ====
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+.PHONY: tests.exe # Always force rebuild of tests
+tests.exe: $(TEST_FILES) $(SHARED_FILES) $(HEADERS)
+	$(CXX) $(CXXFLAGS) $(TEST_FILES) $(SHARED_FILES) -o $@
 
-# ==== Clean ====
 .PHONY: clean
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm -f program.exe tests.exe
